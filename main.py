@@ -20,6 +20,5 @@ response = openai.Image.create(
 image_url = response['data'][0]['url']
 
 
-print(text['choices'][0]['text'])
-print(image_url)
-print(text)
+print("Request:\n", text['choices'][0]['text'])
+print("\nURL to a generated image:\n", image_url)
