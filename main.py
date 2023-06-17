@@ -1,20 +1,25 @@
-import os
-from dotenv import load_dotenv, find_dotenv
-import requests
 import openai
 from config import OPENAI_API_KEY
 
-# load_dotenv(find_dotenv())
 
 openai.api_key = OPENAI_API_KEY
 
+# request = num = input('Enter a request for a picture to be generated: ')
+
+text = openai.Completion.create(
+  model="text-davinci-003",
+  prompt="Description of the rubber duck including detailed information about the used materials, design features and purpose",
+  max_tokens=150
+)
+
 response = openai.Image.create(
-  prompt="a white siamese cat",
+  prompt=text['choices'][0]['text'],
   n=1,
   size="1024x1024"
 )
 image_url = response['data'][0]['url']
 
+
+print(text['choices'][0]['text'])
 print(image_url)
-
-
+print(text)
