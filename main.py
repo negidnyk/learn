@@ -1,5 +1,6 @@
 import openai
 from config import OPENAI_API_KEY
+import requests
 
 # get the API key from environment
 openai.api_key = OPENAI_API_KEY
@@ -8,7 +9,8 @@ openai.api_key = OPENAI_API_KEY
 text = openai.Completion.create(
   model="text-davinci-003",
   prompt="Description of the rubber duck including detailed information about the used materials, design features and purpose",
-  max_tokens=150
+  max_tokens=150,
+  temperature=0.8
 )
 
 # receiving a text from response of text generation block
@@ -27,3 +29,9 @@ image_url = response['data'][0]['url']
 # show results to a user
 print("Request:\n", text_request)
 print("\nURL to a generated image:\n", image_url)
+
+
+
+# get_currency = requests.get("https://api.monobank.ua/bank/currency")
+# print(get_currency.status_code)
+# print(get_currency.json())
